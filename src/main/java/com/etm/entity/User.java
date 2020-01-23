@@ -1,4 +1,4 @@
-package com.etm.user.entity;
+package com.etm.entity;
 
 
 import java.io.Serializable;
@@ -18,6 +18,10 @@ public class User implements Serializable {
 	
 	@Column(name="user_password")
 	private String userPassword;
+	
+	@Column(name="emp_id")
+	private String empId;
+	
 
 	public User() {
 		super();
@@ -28,6 +32,23 @@ public class User implements Serializable {
 		super();
 		this.userName = userName;
 		this.userPassword = userPassword;
+	}
+	
+	
+
+	public User(String userName, String userPassword, String empId) {
+		super();
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.empId = empId;
+	}
+
+	public String getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
 	}
 
 	public String getUserName() {
@@ -48,9 +69,10 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", userPassword=" + userPassword + "]";
+		return "User [userName=" + userName + ", userPassword=" + userPassword + ", empId=" + empId + "]";
 	}
-	
+
+
 	
 }
 
