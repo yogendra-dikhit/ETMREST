@@ -17,7 +17,7 @@ public class UserServiceImple implements UserService {
 	
 		User u=null;
 		try {
-			u = userRepository.findUser(user.getUserName(), user.getUserPassword());
+			u = userRepository.findUser(user);
 		
 			
 		}catch(Exception e) {

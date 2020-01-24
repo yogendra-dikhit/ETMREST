@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.etm.Dao.EmployeeRepository;
 import com.etm.entity.Employee;
+import com.etm.entity.User;
 
 @Service
 public class EmployeeServiceImple implements EmployeeService {
@@ -13,11 +14,11 @@ public class EmployeeServiceImple implements EmployeeService {
 	EmployeeRepository employeeRepository;
 	
 	@Override
-	public Employee find(String empId) {
+	public Employee find(User user) {
 		
 		Employee emp = null;
-		if( empId != null) {
-			emp = employeeRepository.getOne(empId);
+		if( user != null) {
+			emp = employeeRepository.findEmployee(user);
 		}
 		
 		return emp;
