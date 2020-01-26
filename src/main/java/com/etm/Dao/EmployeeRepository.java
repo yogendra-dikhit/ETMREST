@@ -7,6 +7,7 @@ public interface EmployeeRepository{
 
 
 	Employee findEmployee(User user);
+	void addEmployee(Employee emp);
 	
 	
 }

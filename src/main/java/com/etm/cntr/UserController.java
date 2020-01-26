@@ -26,21 +26,23 @@ public class UserController {
 	private EmployeeService employeeService;
 	
 	@PostMapping(value = "/login",produces = {"application/json","application/xml"})
-	public ResponseEntity<Employee> login(@RequestBody User user) {
+	public Employee login(@RequestBody User user) {
+		Employee emp= null;
 		if( user != null && user.getUserName() != null && user.getUserPassword() != null ) {
 		System.out.println(user.getUserName()+" "+user.getUserPassword());
-	
+		
 		try{
 			User u = userService.login(user);
 			if( u != null ) {
-				Employee emp =  employeeService.find(user);
-				
-				return new ResponseEntity<Employee>( emp,HttpStatus.OK) ;
+				emp =  employeeService.find(user);
+				return emp;
+				//return new ResponseEntity<Employee>( emp,HttpStatus.OK) ;
 			}
 			
 		}catch(Exception e) { e.printStackTrace();}
 
 		}
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
+		return emp;
+		//return new ResponseEntity(HttpStatus.NOT_FOUND);
 	}
 }

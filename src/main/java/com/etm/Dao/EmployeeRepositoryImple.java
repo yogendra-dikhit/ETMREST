@@ -23,7 +23,7 @@ public class EmployeeRepositoryImple implements EmployeeRepository {
 			(rs,rowNum) -> new Employee(
 					rs.getString("emp_id"),
 					rs.getString("emp_name"),
-					rs.getInt("emp_phone"),
+					rs.getLong("emp_phone"),
 					rs.getString("emp_email"),
 					rs.getString("emp_doj"),
 					rs.getDouble("emp_salary"),
@@ -31,14 +31,28 @@ public class EmployeeRepositoryImple implements EmployeeRepository {
 					rs.getString("gender"),
 					rs.getString("marital_status"),
 					rs.getString("address"),
-					rs.getString("role_name")
+					rs.getString("role_name"),
+					rs.getString("mgr_id")
 			));
 
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		
+		System.out.println(e);
 		return e;
+	}
+
+	@Override
+	public void addEmployee(Employee emp) {
+		try {
+			String query = "insert into Employee values(?,?,?,?,?,?,?,?,?,?)";
+			jdbcTemplate.update(query, 
+				new Object[] { emp.getEmpName(), emp.getEmpPhone(),emp.getEmpEmail(),emp.getEmpDoj(),
+						emp.getEmpSalary(), emp.getBloodType(),emp.getGender(), emp.getMaritalStatus(),emp.getAddress(),emp.getRoleName()});
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}		
 	}
 
 }

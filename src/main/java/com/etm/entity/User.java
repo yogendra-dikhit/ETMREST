@@ -8,18 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="User")
 public class User implements Serializable {
 
-	@Id
-	@Column(name="user_name")
+
 	private String userName;
 	
-	@Column(name="user_password")
 	private String userPassword;
 	
-	@Column(name="emp_id")
 	private String empId;
 	
 

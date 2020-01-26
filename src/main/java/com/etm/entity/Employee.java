@@ -10,50 +10,29 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
-@Entity
 @XmlRootElement
-@Table(name="Employee")
 public class Employee implements Serializable {
 
-	@Id
-	@Column(name="emp_id")
 	private String empId;
-	
-	@Column(name="emp_name")
 	private String empName;
-	
-	@Column(name="emp_phone")
-	private int empPhone;
-	
-	@Column(name="emp_email")
+	private long empPhone;
 	private String empEmail;
-	
-	@Column(name="emp_doj")
 	private String empDoj;
-	
-	@Column(name="emp_salary")
 	private double empSalary;
-	
-	@Column(name="blood_type")
 	private String bloodType;
-	
 	private String gender;
-	
-	@Column(name="marital_status")
 	private String maritalStatus;
-	
 	private String address;
-	
-	@Column(name="role_name")
 	private String roleName;
+	private String mgr_id;
 
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String empId, String empName, int empPhone, String empEmail, String empDoj, double empSalary,
-			String bloodType, String gender, String maritalStatus, String address, String roleName) {
+	public Employee(String empId, String empName, long empPhone, String empEmail, String empDoj, double empSalary,
+			String bloodType, String gender, String maritalStatus, String address, String roleName, String mgr_id) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
@@ -66,9 +45,8 @@ public class Employee implements Serializable {
 		this.maritalStatus = maritalStatus;
 		this.address = address;
 		this.roleName = roleName;
+		this.mgr_id = mgr_id;
 	}
-	
-	
 
 	public String getEmpId() {
 		return empId;
@@ -86,11 +64,11 @@ public class Employee implements Serializable {
 		this.empName = empName;
 	}
 
-	public int getEmpPhone() {
+	public long getEmpPhone() {
 		return empPhone;
 	}
 
-	public void setEmpPhone(int empPhone) {
+	public void setEmpPhone(long empPhone) {
 		this.empPhone = empPhone;
 	}
 
@@ -158,14 +136,23 @@ public class Employee implements Serializable {
 		this.roleName = roleName;
 	}
 
+	public String getMgr_id() {
+		return mgr_id;
+	}
+
+	public void setMgr_id(String mgr_id) {
+		this.mgr_id = mgr_id;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", empName=" + empName + ", empPhone=" + empPhone + ", empEmail=" + empEmail
 				+ ", empDoj=" + empDoj + ", empSalary=" + empSalary + ", bloodType=" + bloodType + ", gender=" + gender
-				+ ", maritalStatus=" + maritalStatus + ", address=" + address + ", roleName=" + roleName + "]";
+				+ ", maritalStatus=" + maritalStatus + ", address=" + address + ", roleName=" + roleName + ", mgr_id="
+				+ mgr_id + "]";
 	}
-	
-	
+
+
 	
 	
 }
