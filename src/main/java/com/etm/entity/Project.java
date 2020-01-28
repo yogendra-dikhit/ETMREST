@@ -1,12 +1,6 @@
 package com.etm.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "project")
 public class Project {
 
 	private String projectId;

@@ -1,22 +1,12 @@
 package com.etm.entity;
 
-
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 public class User implements Serializable {
 
-
 	private String userName;
-	
 	private String userPassword;
-	
 	private String empId;
-	
 
 	public User() {
 		super();

@@ -1,5 +1,7 @@
 package com.etm.cntr;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etm.entity.Employee;
+import com.etm.entity.Project;
 import com.etm.entity.User;
 import com.etm.service.EmployeeService;
+import com.etm.service.ProjectService;
 import com.etm.service.UserService;
 
 @RestController
-@CrossOrigin(allowedHeaders="*",
+@CrossOrigin(
 origins= {"http://localhost:4200"})
 public class UserController {
 
@@ -25,24 +29,32 @@ public class UserController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@PostMapping(value = "/login",produces = {"application/json","application/xml"})
+	@PostMapping("/login")
 	public Employee login(@RequestBody User user) {
 		Employee emp= null;
+		User u =null;
 		if( user != null && user.getUserName() != null && user.getUserPassword() != null ) {
 		System.out.println(user.getUserName()+" "+user.getUserPassword());
 		
 		try{
-			User u = userService.login(user);
-			if( u != null ) {
+			 //u = userService.login(user);
+			
 				emp =  employeeService.find(user);
 				return emp;
 				//return new ResponseEntity<Employee>( emp,HttpStatus.OK) ;
-			}
 			
 		}catch(Exception e) { e.printStackTrace();}
 
 		}
 		return emp;
 		//return new ResponseEntity(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/get-employees")
+	public List<Employee> getEmployees(){
+		
+		List <Employee> list = employeeService.findEmployees();
+		System.out.println(list);
+		return list;
 	}
 }
