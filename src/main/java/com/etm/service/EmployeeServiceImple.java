@@ -33,5 +33,11 @@ public class EmployeeServiceImple implements EmployeeService {
 		return list;
 	}
 
+	@Override
+	public void updateEmployee(Employee emp) {
+		employeeRepository.updateEmp(emp);;
+		
+	}
+
 	
 }

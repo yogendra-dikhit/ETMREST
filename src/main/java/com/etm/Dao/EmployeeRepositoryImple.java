@@ -82,4 +82,19 @@ public class EmployeeRepositoryImple implements EmployeeRepository {
 
 	}
 
+	@Override
+	public void updateEmp(Employee emp) {
+		try {
+			String query = "update employee set emp_name = ? , emp_phone = ? , emp_email = ?, emp_doj = ?, "
+					+ "emp_salary = ? , blood_type = ? , gender = ? , marital_status = ? , address = ? , role_name = ? where emp_id = ?";
+			jdbcTemplate.update(query, 
+				new Object[] { emp.getEmpName(), emp.getEmpPhone(),emp.getEmpEmail(),emp.getEmpDoj(),
+						emp.getEmpSalary(), emp.getBloodType(),emp.getGender(), emp.getMaritalStatus(),emp.getAddress(),emp.getRoleName(), emp.getEmpId()});
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+	}
+
 }

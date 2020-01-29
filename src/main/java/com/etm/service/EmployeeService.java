@@ -10,4 +10,5 @@ public interface EmployeeService {
 	Employee find(User user);
 	void addEmployee(Employee emp);
 	List<Employee> findEmployees();
+	void updateEmployee(Employee emp);
 }

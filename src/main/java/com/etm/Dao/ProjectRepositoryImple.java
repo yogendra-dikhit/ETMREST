@@ -68,7 +68,6 @@ public class ProjectRepositoryImple implements ProjectRepository {
 					member.getModuleId(), member.getEvaluatedScore() , member.getModuleStatus() 
 				 );
 
-		
 	}
 
 }

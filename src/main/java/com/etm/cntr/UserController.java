@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etm.entity.Employee;
 import com.etm.entity.Project;
+import com.etm.entity.Response;
 import com.etm.entity.User;
 import com.etm.service.EmployeeService;
 import com.etm.service.ProjectService;
@@ -56,5 +58,18 @@ public class UserController {
 		List <Employee> list = employeeService.findEmployees();
 		System.out.println(list);
 		return list;
+	}
+	
+	@PutMapping("/update-employee")
+	public Response updateEmp(@RequestBody Employee emp) {
+		Response res = null;
+		try {
+			employeeService.updateEmployee(emp);
+			return res = new Response("Updated");
+		}catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		return res;
 	}
 }

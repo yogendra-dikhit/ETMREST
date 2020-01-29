@@ -17,7 +17,7 @@ public class Employee implements Serializable {
 	private String maritalStatus;
 	private String address;
 	private String roleName;
-	private String mgr_id;
+	private String mgrId;
 
 	public Employee() {
 		super();
@@ -25,7 +25,7 @@ public class Employee implements Serializable {
 	}
 
 	public Employee(String empId, String empName, long empPhone, String empEmail, String empDoj, double empSalary,
-			String bloodType, String gender, String maritalStatus, String address, String roleName, String mgr_id) {
+			String bloodType, String gender, String maritalStatus, String address, String roleName, String mgrId) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
@@ -38,7 +38,7 @@ public class Employee implements Serializable {
 		this.maritalStatus = maritalStatus;
 		this.address = address;
 		this.roleName = roleName;
-		this.mgr_id = mgr_id;
+		this.mgrId = mgrId;
 	}
 
 	public String getEmpId() {
@@ -129,20 +129,20 @@ public class Employee implements Serializable {
 		this.roleName = roleName;
 	}
 
-	public String getMgr_id() {
-		return mgr_id;
+	public String getMgrId() {
+		return mgrId;
 	}
 
-	public void setMgr_id(String mgr_id) {
-		this.mgr_id = mgr_id;
+	public void setMgrId(String mgrId) {
+		this.mgrId = mgrId;
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", empName=" + empName + ", empPhone=" + empPhone + ", empEmail=" + empEmail
 				+ ", empDoj=" + empDoj + ", empSalary=" + empSalary + ", bloodType=" + bloodType + ", gender=" + gender
-				+ ", maritalStatus=" + maritalStatus + ", address=" + address + ", roleName=" + roleName + ", mgr_id="
-				+ mgr_id + "]";
+				+ ", maritalStatus=" + maritalStatus + ", address=" + address + ", roleName=" + roleName + ", mgrId="
+				+ mgrId + "]";
 	}
 
 
