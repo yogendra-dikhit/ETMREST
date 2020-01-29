@@ -9,5 +9,4 @@ public class EtmApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EtmApplication.class, args);
 	}
-
 }
