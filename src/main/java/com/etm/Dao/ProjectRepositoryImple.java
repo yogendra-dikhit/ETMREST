@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.etm.entity.Project;
 import com.etm.entity.ProjectMembers;
+import com.etm.entity.Response;
 
 @Repository
 public class ProjectRepositoryImple implements ProjectRepository {
@@ -25,16 +26,15 @@ public class ProjectRepositoryImple implements ProjectRepository {
 			String query = "insert into Project values(?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(query 
 				,proj.getProjectId(), proj.getProjectTitle(), proj.getProjectDescription(),proj.getStartDate(),proj.getEndDate(),proj.getMgrId(),proj.getProjectCompPercentage(),proj.getProjectStatus() );
-
 	}
 
 	@Override
-	public List<Project> getProjects() {
+	public List<Project> getProjects(String empId) {
 		List<Project> list = null;
 		try {
-			String query = "select * from project";
+			String query = "select * from project where mgr_id = ?";
 			list = jdbcTemplate.query(query,
-				new Object[] {}, new RowMapper<Project>() {
+				new Object[] {empId}, new RowMapper<Project>() {
 				
 					@Override
 					public Project mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -61,12 +61,28 @@ public class ProjectRepositoryImple implements ProjectRepository {
 	}
 
 	@Override
-	public void addMember(ProjectMembers member) {
-		
+	public Response addMember(ProjectMembers member) {
+		Response res = null;
+		try {
+			ProjectMembers pmember =
+					jdbcTemplate.queryForObject("select emp_id from project_members where project_id = 'p_09' and module_id = 'M100'",new Object[] {}, new RowMapper<ProjectMembers>() {
+				@Override
+				public ProjectMembers mapRow(ResultSet rs, int rowNum) throws SQLException {
+					ProjectMembers pmember = new ProjectMembers();
+					pmember.setEmpId(rs.getString("emp_id"));
+					return pmember;
+				}});
+			System.out.println(pmember);
+		} catch (Exception e) {
 			String query = "call insertProjectMember(?,?,?,?,?)";
 			jdbcTemplate.update(query, member.getEmpId() , member.getProjectId(),
 					member.getModuleId(), member.getEvaluatedScore() , member.getModuleStatus() 
 				 );
+			return res = new Response("Member Added");
+		}
+		return res;
+		
+
 
 	}
 

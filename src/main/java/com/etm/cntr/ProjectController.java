@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etm.entity.Employee;
@@ -45,9 +46,9 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/get-projectlist")
-	public List<Project> getProjectList(){
+	public List<Project> getProjectList(@RequestParam String mgrId){
 		
-		List <Project> list = projectService.getProjects();
+		List <Project> list = projectService.getProjects(mgrId);
 		System.out.println(list);
 		return list;
 	}
@@ -58,9 +59,9 @@ public class ProjectController {
 		if(projectMember != null && projectMember.getEmpId() != null && projectMember.getProjectId() != null &&
 				projectMember.getModuleId() != null && projectMember.getModuleStatus() != null ) {
 			System.out.println(projectMember);
-			projectService.addmember(projectMember);
+			Response res =  projectService.addmember(projectMember);
 			
-			return new ResponseEntity<Response>( new Response("Member Added")  , HttpStatus.OK) ;
+			return new ResponseEntity<Response>( res , HttpStatus.OK) ;
 		}
 		
 		return new ResponseEntity(HttpStatus.NOT_FOUND);

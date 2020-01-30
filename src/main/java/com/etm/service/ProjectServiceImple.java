@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.etm.Dao.ProjectRepository;
 import com.etm.entity.Project;
 import com.etm.entity.ProjectMembers;
+import com.etm.entity.Response;
 
 @Service
 public class ProjectServiceImple implements ProjectService{
@@ -24,14 +25,15 @@ public class ProjectServiceImple implements ProjectService{
 	}
 
 	@Override
-	public List<Project> getProjects() {
-		List<Project> list = projectRepository.getProjects();
+	public List<Project> getProjects(String empId) {
+		List<Project> list = projectRepository.getProjects(empId);
 		return list;
 	}
 
 	@Override
-	public void addmember(ProjectMembers projectMember) {
-		projectRepository.addMember(projectMember);
+	public Response addmember(ProjectMembers projectMember) {
+		Response res =  projectRepository.addMember(projectMember);
+		return res;
 		
 	}
 
