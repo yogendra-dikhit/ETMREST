@@ -25,8 +25,8 @@ public class ProjectServiceImple implements ProjectService{
 	}
 
 	@Override
-	public List<Project> getProjects(String empId) {
-		List<Project> list = projectRepository.getProjects(empId);
+	public List<Project> getProjects() {
+		List<Project> list = projectRepository.getProjects();
 		return list;
 	}
 
@@ -34,6 +34,18 @@ public class ProjectServiceImple implements ProjectService{
 	public Response addmember(ProjectMembers projectMember) {
 		Response res =  projectRepository.addMember(projectMember);
 		return res;
+		
+	}
+
+	@Override
+	public List<ProjectMembers> getEmployeeProjects(String empId) {
+		List<ProjectMembers> list = projectRepository.getEmployeeProjects(empId);
+		return list;
+	}
+
+	@Override
+	public void updateProject(ProjectMembers projectMembers) {
+			projectRepository.updateProject(projectMembers);
 		
 	}
 

@@ -59,6 +59,12 @@ public class ProjectMembers {
 	public void setModuleMembersCount(int moduleMembersCount) {
 		this.moduleMembersCount = moduleMembersCount;
 	}
+	@Override
+	public String toString() {
+		return "ProjectMembers [empId=" + empId + ", projectId=" + projectId + ", moduleId=" + moduleId
+				+ ", evaluatedScore=" + evaluatedScore + ", moduleStatus=" + moduleStatus + ", moduleMembersCount="
+				+ moduleMembersCount + "]";
+	}
 	
 	
 }

@@ -8,6 +8,8 @@ import com.etm.entity.Response;
 public interface ProjectService {
 
 	void addProject(Project project);
-	List<Project> getProjects(String empId);
+	List<Project> getProjects();
+	List<ProjectMembers> getEmployeeProjects(String empId);
 	Response addmember(ProjectMembers projectMember);
+	void updateProject(ProjectMembers projectMembers);
 }

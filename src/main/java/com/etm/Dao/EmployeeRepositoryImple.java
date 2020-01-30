@@ -50,12 +50,12 @@ public class EmployeeRepositoryImple implements EmployeeRepository {
 	@Transactional
 	public void addEmployee(newEmployee emp) {
 
-			String query = "insert into Employee values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			String query = "call insertEmployee(?,?,?,?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(query, 
-				new Object[] {emp.getEmpId(), emp.getEmpName(), emp.getEmpPhone(),emp.getEmpEmail(),emp.getEmpDoj(),
+				new Object[] {emp.getEmpName(), emp.getEmpPhone(),emp.getEmpEmail(),emp.getEmpDoj(),
 						emp.getEmpSalary(), emp.getBloodType(),emp.getGender(), emp.getMaritalStatus(),emp.getAddress(),emp.getRoleName(),emp.getMgrId()});
 	
-			jdbcTemplate.update("insert into user values(?,?,?)", emp.getUserPassword(),emp.getEmpId());
+			jdbcTemplate.update("insert into user values(?,?,?)",emp.getUserName(), emp.getUserPassword(),emp.getEmpId());
 	}
 
 	@Override

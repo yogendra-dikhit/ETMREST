@@ -46,9 +46,16 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/get-projectlist")
-	public List<Project> getProjectList(@RequestParam String mgrId){
+	public List<Project> getProjectList(){
 		
-		List <Project> list = projectService.getProjects(mgrId);
+		List <Project> list = projectService.getProjects();
+		System.out.println(list);
+		return list;
+	}
+	@GetMapping("/get-employee-projectlist")
+	public List<ProjectMembers> getEmployeeProjectList(@RequestParam String empId){
+		
+		List <ProjectMembers> list = projectService.getEmployeeProjects(empId);
 		System.out.println(list);
 		return list;
 	}
@@ -62,6 +69,20 @@ public class ProjectController {
 			Response res =  projectService.addmember(projectMember);
 			
 			return new ResponseEntity<Response>( res , HttpStatus.OK) ;
+		}
+		
+		return new ResponseEntity(HttpStatus.NOT_FOUND);
+	}
+	
+	@PostMapping("/update-projectmember")
+	public ResponseEntity<Response> updatemember(@RequestBody ProjectMembers projectMember) {
+		System.out.println("in update");
+		if(projectMember != null && projectMember.getEmpId() != null && projectMember.getProjectId() != null &&
+				projectMember.getModuleId() != null && projectMember.getModuleStatus() != null ) {
+			System.out.println(projectMember);
+			projectService.updateProject(projectMember);
+			System.out.println("updated");
+			return new ResponseEntity<Response>( new Response("Updated") , HttpStatus.OK) ;
 		}
 		
 		return new ResponseEntity(HttpStatus.NOT_FOUND);

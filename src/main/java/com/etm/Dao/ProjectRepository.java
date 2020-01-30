@@ -9,6 +9,8 @@ import com.etm.entity.Response;
 public interface ProjectRepository {
 
 	void createProject(Project proj);
-	List<Project> getProjects(String empId);
+	List<Project> getProjects();
 	Response addMember(ProjectMembers member);
+	List<ProjectMembers> getEmployeeProjects(String empId);
+	void updateProject(ProjectMembers projectMembers);
 }
